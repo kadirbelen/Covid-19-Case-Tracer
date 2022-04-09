@@ -1,18 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+ <div class="container">
+  <search-bar></search-bar>
+  <covid-detail-table></covid-detail-table>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import SearchBar from './components/SearchBar.vue'
+import CovidDetailTable from './components/CovidDetailTable'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SearchBar,
+    CovidDetailTable
   }
 }
 </script>
+
 
 <style>
 #app {
