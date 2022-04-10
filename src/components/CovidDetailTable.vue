@@ -25,47 +25,16 @@
 
 <script>
 
-import axios from "axios";
+
 
 export default {
   data() {
     return {
-      data: null,
+     
     };
   },
-  filters:{
-    numberFormat(number){
-      return number.toLocaleString();
-    }
-  },
-  methods: {
-    getAllCountriesCovidCase() {
-      const options = {
-        method: "GET",
-        url: "https://covid-193.p.rapidapi.com/statistics",
-        headers: {
-          "X-RapidAPI-Host": "covid-193.p.rapidapi.com",
-          "X-RapidAPI-Key":
-            "acd5c04867mshec3ef412b9b1997p1a3c44jsn298f37dfdb15",
-        },
-      };
+  props:['data'],
 
-      axios
-        .request(options)
-        .then(response => {
-         
-          this.data=response.data.response;
-           console.log(response.data);
-        });
-        // .catch(function (error) {
-        //   console.error(error);
-        // });
-    },
-    
-  },
-  mounted(){
-    this.getAllCountriesCovidCase();
-  }
 };
 </script>
 
