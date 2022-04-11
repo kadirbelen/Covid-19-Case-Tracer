@@ -14,7 +14,7 @@
         <tr v-for="(item,index) in data" :key="index">
           <td scope="row">{{index}}</td>
           <td>{{item.country}}</td>
-          <td>{{item.deaths.total }}</td>
+          <td>{{item.deaths.total}}</td>
           <td>{{item.tests.total}}</td>
           <td>{{item.cases.total}}</td>
         </tr>
@@ -34,6 +34,11 @@ export default {
     };
   },
   props:['data'],
+  filters:{
+    numberFormat(number){
+      return number.toLocaleString();
+    }
+  }
 
 };
 </script>
