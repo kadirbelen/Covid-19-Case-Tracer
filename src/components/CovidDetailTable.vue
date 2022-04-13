@@ -11,12 +11,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item,index) in data" :key="index">
-          <td scope="row">{{index}}</td>
-          <td>{{item.country}}</td>
-          <td>{{item.deaths.total}}</td>
-          <td>{{item.tests.total}}</td>
-          <td>{{item.cases.total}}</td>
+        <tr v-for="(item, index) in data" :key="index">
+          <td scope="row">{{ index }}</td>
+          <td>{{ item.country }}</td>
+          <td>{{ numberFormat(item.deaths.total) }}</td>
+          <td>{{ numberFormat(item.tests.total) }}</td>
+          <td>{{ numberFormat(item.cases.total) }}</td>
         </tr>
       </tbody>
     </table>
@@ -24,22 +24,17 @@
 </template>
 
 <script>
-
-
-
+var numeral = require("numeral");
 export default {
   data() {
-    return {
-     
-    };
+    return {};
   },
-  props:['data'],
-  filters:{
-    numberFormat(number){
-      return number.toLocaleString();
-    }
-  }
-
+  methods: {
+    numberFormat(number) {
+      return numeral(number).format("0,0,0,0");
+    },
+  },
+  props: ["data"],
 };
 </script>
 

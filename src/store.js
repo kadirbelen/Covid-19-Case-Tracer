@@ -1,19 +1,21 @@
-import Vuex from 'vuex'
+import Vuex from "vuex";
 import axios from "axios";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 export default new Vuex.Store({
     state: {
         covidData: [],
         covidFilteredData: [],
+        isLoading: Loading.arrows("Loading..."),
     },
     mutations: {
         initCovidData(state, covidData) {
-            state.covidData = covidData
+            state.covidData = covidData;
         },
         initCovidFilteredData(state, covidFilteredData) {
-            state.covidFilteredData = covidFilteredData
+            state.covidFilteredData = covidFilteredData;
+            state.isLoading = Loading.remove();
         },
-
     },
     actions: {
         initApp(context) {
@@ -27,20 +29,18 @@ export default new Vuex.Store({
             };
 
             axios.request(options).then((response) => {
-                console.log(response.data)
-                context.commit('initCovidData', response.data.response)
-                context.commit('initCovidFilteredData', response.data.response)
-
+                console.log(response.data);
+                context.commit("initCovidData", response.data.response);
+                context.commit("initCovidFilteredData", response.data.response);
             });
-        }
+        },
     },
     getters: {
         getCovidData(state) {
-            return state.covidData
+            return state.covidData;
         },
         getCovidFilteredData(state) {
-            return state.covidFilteredData
+            return state.covidFilteredData;
         },
-    }
-
-})
+    },
+});
