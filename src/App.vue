@@ -1,8 +1,39 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-10">
+      <div class="col-4">
         <search-bar @searchRequested="handleChange"></search-bar>
+      </div>
+      <div class="col-1">
+        <input
+          type="text"
+          class="form-control text-center"
+          v-model="minute"
+          placeholder="dakika"
+        />
+      </div>
+      <div class="col-1">
+        <input
+          type="text"
+          class="form-control text-center"
+          v-model="second"
+          placeholder="saniye"
+        />
+      </div>
+
+      <div class="col-2">
+        <button type="button" @click="updateData" class="btn btn-secondary">
+          Veri Güncelle
+        </button>
+      </div>
+      <div class="col-1">
+        <button
+          type="button"
+          @click="dataRefreshStop"
+          class="btn btn-secondary"
+        >
+          Durdur
+        </button>
       </div>
       <div class="dropdown col-2">
         <button
@@ -38,6 +69,8 @@
           </button>
         </div>
       </div>
+       <div class="col-1">
+      </div>
     </div>
     <covid-detail-table v-bind:data="covidFilteredData"></covid-detail-table>
   </div>
@@ -56,6 +89,10 @@ export default {
   data() {
     return {
       order: "Sıralama",
+      minute: null,
+      second: null,
+      time: 0,
+      dataRefresh: null,
     };
   },
   methods: {
@@ -105,8 +142,24 @@ export default {
         a.cases.total < b.cases.total ? 1 : -1
       );
     },
+    updateData() {
+      this.time = (this.minute * 60 + this.second) * 1000;
+      if (this.time != 0) {
+        this.dataRefresh = setInterval(() => {
+          console.log(this.time);
+          this.$store.dispatch("initApp");
+        }, this.time);
+      } else {
+        alert("Lütfen değer girdiğinizden emin olunuz!!!");
+      }
+    },
+    dataRefreshStop() {
+      clearInterval(this.dataRefresh);
+    },
   },
   created() {
+    //this.updateData()
+    // this.$store.state.isLoading = false
     this.$store.dispatch("initApp");
   },
   computed: {
@@ -114,6 +167,7 @@ export default {
       return this.$store.getters.getCovidFilteredData;
     },
   },
+
 };
 </script>
 
@@ -126,4 +180,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>
