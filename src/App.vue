@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
+       <div class="col-1">
+        <font-awesome-icon icon="shield-virus" class="fa-2xl" />
+      </div>
       <div class="col-4">
         <search-bar @searchRequested="handleChange"></search-bar>
       </div>
@@ -68,8 +71,6 @@
             Azalan Sıralama
           </button>
         </div>
-      </div>
-       <div class="col-1">
       </div>
     </div>
     <covid-detail-table v-bind:data="covidFilteredData"></covid-detail-table>
@@ -167,7 +168,6 @@ export default {
       return this.$store.getters.getCovidFilteredData;
     },
   },
-
 };
 </script>
 
@@ -180,5 +180,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
+.fa-2xl {
+  color: green;
+}
 </style>
