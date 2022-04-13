@@ -6,7 +6,7 @@ export default new Vuex.Store({
     state: {
         covidData: [],
         covidFilteredData: [],
-        isLoading: Loading.arrows("Loading..."),
+
     },
     mutations: {
         initCovidData(state, covidData) {
@@ -14,11 +14,12 @@ export default new Vuex.Store({
         },
         initCovidFilteredData(state, covidFilteredData) {
             state.covidFilteredData = covidFilteredData;
-            state.isLoading = Loading.remove();
+            Loading.remove();
         },
     },
     actions: {
         initApp(context) {
+            Loading.arrows("Loading...");
             const options = {
                 method: "GET",
                 url: "https://covid-193.p.rapidapi.com/statistics",
