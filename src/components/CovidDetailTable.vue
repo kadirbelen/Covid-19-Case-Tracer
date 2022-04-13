@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in data" :key="index">
-          <td scope="row">{{ index }}</td>
+          <td scope="row">{{ index+1 }}</td>
           <td>{{ item.country }}</td>
           <td>{{ numberFormat(item.deaths.total) }}</td>
           <td>{{ numberFormat(item.tests.total) }}</td>
