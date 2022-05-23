@@ -5,7 +5,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Ülke</th>
-          <th scope="col">Geberen Sayısı</th>
+          <th scope="col">Ölüm Sayısı</th>
           <th scope="col">Test Sayısı</th>
           <th scope="col">Vaka Sayısı</th>
         </tr>
